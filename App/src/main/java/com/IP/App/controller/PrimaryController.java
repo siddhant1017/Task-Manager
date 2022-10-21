@@ -6,8 +6,11 @@ import org.bson.types.Binary;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,13 +85,15 @@ public class PrimaryController {
         return jsonObject.toString();
     }
 
-    @PostMapping(path="/update",produces = MediaType.APPLICATION_JSON_VALUE)
+    //Do not call this API, it is deprecated
+    /*
+    @PostMapping(path="/updateDeprecated",produces = MediaType.APPLICATION_JSON_VALUE)
     String updateUser(@RequestBody User user) {
         String hashInput="";
         User targetUser;
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status", false);
-        jsonObject.put("message", "Deletion Failed");
+        jsonObject.put("message", "Update Failed");
         Optional<User> optionalTargetUser = repo.findById(user.getUid());
         if(optionalTargetUser.isPresent()) {
             targetUser = optionalTargetUser.get();
@@ -125,5 +130,54 @@ public class PrimaryController {
             jsonObject.put("message","success");
         }
         return jsonObject.toString();
+    }
+
+     */
+
+    @PostMapping(path="/update",consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.MULTIPART_FORM_DATA_VALUE)
+    String updateUserTest(@RequestParam String uid, @RequestParam(name="username", required = false) String username, @RequestParam(name="email", required = false) String email, @RequestParam(name="password", required = false) String password, @RequestPart(name="image", required = false) MultipartFile image) throws IOException {
+        String hashInput="";
+        User targetUser;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", false);
+        jsonObject.put("message", "Update Failed");
+        Optional<User> optionalTargetUser = repo.findById(uid);
+        if(optionalTargetUser.isPresent()) {
+            targetUser = optionalTargetUser.get();
+
+            if(username!=null) {
+                targetUser.setUsername(username);
+                hashInput+=username;
+            }else
+                hashInput+=targetUser.getUsername();
+            if(email!=null) {
+                targetUser.setEmail(email);
+                hashInput+=email;
+            }else
+                hashInput+=targetUser.getEmail();
+            if(password!=null){
+                targetUser.setPassword(password);
+                hashInput+=password;
+            }else
+                hashInput+=targetUser.getPassword();
+            if(image!=null) {
+                targetUser.setImage(new Binary(image.getBytes()));
+                hashInput+=image;
+            }else
+                hashInput+=targetUser.getImage();
+
+            targetUser.setUid(sha256(hashInput));
+            repo.deleteById(uid);
+            repo.save(targetUser);
+            jsonObject.put("status",true);
+            jsonObject.put("message","success");
+        }
+        return jsonObject.toString();
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public void handleMissingParams(MissingServletRequestParameterException ex){
+        String name = ex.getParameterName();
+        System.out.println(name + " parameter is missing");
     }
 }
