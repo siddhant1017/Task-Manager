@@ -1,7 +1,7 @@
 package com.IP.App.controller;
 
 import com.IP.App.Functions.Function;
-import com.IP.App.User;
+import com.IP.App.Models.User;
 import org.bson.types.Binary;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
