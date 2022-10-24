@@ -1,4 +1,4 @@
-package com.IP.App;
+package com.IP.App.Models;
 
 import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
