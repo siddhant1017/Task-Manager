@@ -1,0 +1,32 @@
+.App {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: 50px;
+}
+
+.App .title {
+  font-size: 5rem;
+  padding: 0px 20px 0px 20px;
+  /*background-color: #009b77;*/
+  /*border-radius: 10px;
+  border: 2px;*/
+  align-self: center;
+  color: #009b77;
+  font-family: "Copperplate", cursive;
+  
+}
+
+.logout{
+  font-family: "Copperplate", cursive;
+  color: #009b77;
+  float:right;
+  border: 1.5px solid #009b77;
+  text-align: right;
+  align-self:flex-end;
+  background-color: transparent;
+}
+
+.logout:hover {
+  padding: 7px;
+  font-size: 1.0rem;
+}
