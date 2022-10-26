@@ -12,6 +12,8 @@ public class Todo {
     @Id
     private String id;
 
+    private String loginId;
+
 //    @NotBlank
 //    @Size(max=100)
     @Indexed(unique=true)
@@ -35,6 +37,14 @@ public class Todo {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
     }
 
     public String getTitle() {
@@ -64,7 +74,7 @@ public class Todo {
     @Override
     public String toString() {
         return String.format(
-                "Todo[id=%s, title='%s', completed='%s']",
-                id, title, completed);
+                "Todo[id=%s, loginId=%s, title='%s', completed='%s']",
+                id, loginId, title, completed);
     }
 }
