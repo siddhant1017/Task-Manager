@@ -1,0 +1,50 @@
+.container-root{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;
+}
+
+.circular--landscape 
+{ 
+    display: inline-block; 
+    position: relative;
+    margin-left: 5%; 
+    width: 350px; 
+    height: 350px; 
+    overflow: hidden; 
+    border-radius: 50%; 
+}
+
+.container-text{
+    color: #009B77;
+}
+
+.line-v-1 {
+    border-left: 6px solid #009B77;
+    align-self: stretch;
+    margin-left: 5%;
+  }
+
+.container-items{
+    color: #009B77;
+    text-align: left;
+    margin-left: 10%;
+    border-spacing: 50px 20px
+}
+
+.container-item{
+    margin-left: 6%;
+}
+
+.container-img{
+    color: #009B77;
+    margin-right: 10%;
+    padding-top: 30%;
+}
+
+.profilepic{
+    width: auto; 
+    height: 100%; 
+}

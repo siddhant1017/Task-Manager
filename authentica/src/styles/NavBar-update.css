@@ -1,0 +1,14 @@
+.navigation{
+    background-color: #363b45;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title{
+    color: #009B77;
+    margin-left: 1%;
+
+}

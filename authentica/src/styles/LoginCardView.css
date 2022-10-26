@@ -1,0 +1,79 @@
+.form{
+height: 100%;
+width: 100%;
+opacity: 1;
+border: 1px;
+border-color: white;
+}
+
+.header{
+    font-size: large;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-weight: bold;
+    color: #009B77;
+}
+
+.user {
+    margin-top: 5%;
+    font-weight: bold;
+    color: #009B77;
+}
+
+.login{
+    color: #009B77;
+}
+
+.register{
+    margin-top: 20%;
+    color: #009B77;
+    text-decoration-line: underline;
+}
+
+.line-1 {
+    height: 1px;
+    background: #009B77;
+  }
+
+.contents{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.input-container{
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.google-login{
+    text-align: -webkit-center;
+}
+
+.input{
+    box-sizing: border-box;
+    background-color: #282c34;
+    color: white;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    height: 30px;
+    width: 70%;
+    border: 0px;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+.button-container{
+    height: 100%;
+    width: 100%;
+}
+
+.button{
+    background-color: #009B77;
+    color: white;
+    border: 0px;
+    height: 30px;
+    width: 30%;
+    border-radius: 10px;
+    margin-top: 5%;
+}
