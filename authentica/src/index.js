@@ -6,6 +6,7 @@ import UserScreen from './UserScreen';
 import reportWebVitals from './reportWebVitals';
 import UpdateScreen from './UpdateScreen';
 import RegisterScreen from './RegisterScreen'
+import Todo from './components/ToDo';
 import {
   BrowserRouter as Router,
   Routes,
@@ -21,6 +22,7 @@ root.render(
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/user" element={<UserScreen />} />
           <Route path="/update" element={<UpdateScreen />} />
+          <Route path="/todo" element={<Todo />} />
       </Routes>
     </Router>
 
