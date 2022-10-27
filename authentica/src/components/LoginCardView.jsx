@@ -55,8 +55,7 @@ function CardView() {
     obj['photo'] = response['picture'] 
 
     var userD = {}
-    userD['userDetail'] = obj
-
+    userD['userDetail'] = obj;
     navigate("/todo",{state: { res: userD } });
   }
 
