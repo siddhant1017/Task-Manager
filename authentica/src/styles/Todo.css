@@ -1,0 +1,97 @@
+.todo {
+    align-self: center;
+    color: white;
+}
+
+.todo .crossText {
+    text-decoration: line-through;
+    color: teal;
+}
+  
+.todo input {
+    background: transparent;
+    border: none;
+    color: white;
+    border-bottom: 5px dashed black;
+    min-width: 400px;
+    margin-top: 40px;
+    padding: 5px;
+    font-size: 1.5rem;
+    /* font-family: "Copperplate", cursive; */
+}
+  
+.todo input::placeholder {
+    color: white;
+    font-size: 1.5rem;
+    /* font-family: "Copperplate", cursive; */
+}
+  
+/* .todo input:focus {
+    outline: none;
+    border: 2px dotted black;
+} */
+  
+.todo .add-btn {
+
+    /* margin-left: 10px;
+    cursor: pointer; */
+    font-size: large;
+    background-color: #009B77;
+    color: white;
+    border-radius: 10%;
+
+    width: 80px;
+    margin: 10px;
+    height: 30px;
+    /* font-family: "Copperplate", cursive; */
+} 
+    
+/* .todo .add-btn:hover {
+    padding: 15px;
+    font-size: 1.5rem;
+} */
+  
+.todo ul {
+    margin-top: 30px;
+    font-size: 1.5rem;
+}
+  
+.todo ul li {
+    list-style: none;
+    margin-bottom: 4px;
+  
+    border: 2px solid black;
+    border-radius: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 5px;
+    margin-left: -100px;
+    background-color: aliceblue;
+    /* font-family: "Copperplate", cursive; */
+    color: black;
+}
+
+.todo ul li .delete {
+    margin-top: 5px;
+    float: right;
+    padding: 4px 10px 4px 10px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    /* font-family: "Copperplate", cursive; */
+}
+  
+.todo ul li .completed {
+    margin-top: 5px;
+    float: right;
+    padding: 4px 10px 4px 10px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(8, 212, 29);
+    margin-left: 10px;
+    color: white;
+    /* font-family: "Copperplate", cursive; */
+}

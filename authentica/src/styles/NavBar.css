@@ -1,0 +1,32 @@
+.navigation{
+    background-color: #363b45;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title{
+    color: #009B77;
+    margin-left: 1%;
+}
+
+.button-container-1{
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    justify-content: space-between;
+    width: 25%;
+    margin-right: 5%;
+    align-content: stretch;
+}
+
+.button-1{
+    background-color: #009B77;
+    color: white;
+    border-radius: 10%;
+    border-width: 0px;
+    margin: 10px;
+    height: 30px;
+}

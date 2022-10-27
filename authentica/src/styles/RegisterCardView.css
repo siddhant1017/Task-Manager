@@ -1,0 +1,75 @@
+.card-1{
+    border-radius: 20px;
+    background-color: #363b45;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    flex-grow: 1;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+::file-selector-button {
+    display: none;
+  }
+/* 
+  input[type='file'] {
+    color: rgba(0, 0, 0, 0)
+  } */
+  
+.container-items-1{
+    color: #009B77;
+    width: 100%;
+    height: 100%;
+    border-spacing: 50px 0px
+}
+
+.container-item-1{
+    margin-left: 6%;
+}
+
+.container-img-1{
+    color: #009B77;
+}
+
+.input-1{
+    box-sizing: border-box;
+    background-color: #282c34;
+    color: white;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: medium;
+    height: 40%;
+    width: 100%;
+    border: 0px;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+.update-text{
+    color: #009B77;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.container-button-1{
+    background-color: #009B77;
+    color: white;
+    border-width: 0px;
+    border-radius: 10px;
+    height: 40%;
+    width: 100%;
+}
+
+.container-button-2{
+    background-color: #009B77;
+    color: white;
+    border-width: 0px;
+    border-radius: 10px;
+    height: 8%;
+    width: 15%;
+    margin-bottom: 2%;
+}

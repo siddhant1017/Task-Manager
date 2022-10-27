@@ -12,12 +12,14 @@ public class Todo {
     @Id
     private String id;
 
+    private String loginId;
+
 //    @NotBlank
 //    @Size(max=100)
     @Indexed(unique=true)
-    private String title;
+    private String value;
 
-    private Boolean completed = false;
+    private Boolean isCompleted = false;
 
     private Date createdAt = new Date();
 
@@ -25,8 +27,8 @@ public class Todo {
         super();
     }
 
-    public Todo(String title) {
-        this.title = title;
+    public Todo(String value) {
+        this.value = value;
     }
 
     public String getId() {
@@ -37,20 +39,28 @@ public class Todo {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getLoginId() {
+        return loginId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
     }
 
-    public Boolean getCompleted() {
-        return completed;
+    public String getValue() {
+        return value;
     }
 
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public Boolean getIsCompleted() {
+        return isCompleted;
+    }
+
+    public void setIsCompleted(Boolean isCompleted) {
+        this.isCompleted = isCompleted;
     }
 
     public Date getCreatedAt() {
@@ -64,7 +74,7 @@ public class Todo {
     @Override
     public String toString() {
         return String.format(
-                "Todo[id=%s, title='%s', completed='%s']",
-                id, title, completed);
+                "Todo[id=%s, loginId=%s, value='%s', isCompleted='%s']",
+                id, loginId, value, isCompleted);
     }
 }
