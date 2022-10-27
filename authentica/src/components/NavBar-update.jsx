@@ -5,7 +5,7 @@ class NavBar extends Component {
     return (
       <React.Fragment>
         <nav className="navigation">
-            <h1 className="title">Update</h1>
+            <h1 className="title">Update Profile</h1>
         </nav>
       </React.Fragment>
     );

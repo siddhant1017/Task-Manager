@@ -9,7 +9,7 @@ function NavBar(props) {
             <h1 className="title">Welcome User</h1>
             <div className="button-container-1">
             <button className="button-1" onClick={() => navigate("/user")}> Dashboard </button>
-            <button className="button-1" onClick={() => navigate("/update", {state: { res : props }})}>Update</button>
+            <button className="button-1" onClick={() => navigate("/update", {state: { res : props }})}>Update Profile</button>
             <button className="button-1" onClick={() => navigate("/")}>Log out</button>
             </div>
         </nav>

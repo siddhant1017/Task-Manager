@@ -36,7 +36,7 @@ function CardView() {
 
   fetch("http://localhost:8080/login", requestOptions)
   .then(response => response.text())
-  .then(result => {console.log(requestOptions); var obj = JSON.parse(result); if(obj['status']==true){obj['password']=userPass; navigate("/user",{state: { res: obj } });} else alert('Wrong creds');})
+  .then(result => {console.log(requestOptions); var obj = JSON.parse(result); if(obj['status']==true){obj['password']=userPass; navigate("/todo",{state: { res: obj } });} else alert('Wrong creds');})
   .catch(error => console.log('error', error));
 
   }
@@ -57,7 +57,7 @@ function CardView() {
     var userD = {}
     userD['userDetail'] = obj
 
-    navigate("/user",{state: { res: userD } });
+    navigate("/todo",{state: { res: userD } });
   }
 
   const register = () =>{
