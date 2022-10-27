@@ -1,13 +1,14 @@
 import React from 'react'
 import '../styles/RegisterCardView.css'
 
+import { useNavigate } from "react-router-dom";
 import { MdPassword } from "react-icons/md";
 import { MdEmail } from "react-icons/md";
 import { MdAccountCircle } from "react-icons/md";
 import { useState, useRef } from "react";
 
 function UpdateCardView() {
-
+    const navigate = useNavigate();
     const [userName, setName] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -41,7 +42,13 @@ function UpdateCardView() {
 
         fetch("http://localhost:8080/register", requestOptions)
         .then(response => response.text())
-        .then(result => {console.log(result); var obj = JSON.parse(result); if(obj['status']==true) alert('Registered'); else alert('Error');})
+        .then(result => {console.log(result); 
+            var obj = JSON.parse(result); 
+            if(obj['status']==true){
+                navigate("/",{state: { res: obj } });
+             }
+             else 
+                alert('Error');})
         .catch(error => console.log('error', error));
     }
 

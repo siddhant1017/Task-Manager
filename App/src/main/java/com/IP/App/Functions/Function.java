@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 public class Function {
     public static Binary convertToBinary() {
         Binary binary;
-        File fnew = new File("App/src/main/resources/images/profile.png");
+        File fnew = new File("/Users/tanyasethi/Documents/GitHub/Task-Manager/App/src/main/resources/images/profile.png");
         BufferedImage originalImage = null;
         try {
             originalImage = ImageIO.read(fnew);

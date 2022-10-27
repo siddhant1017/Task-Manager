@@ -89,7 +89,9 @@ let allTasks;
       .catch(error => console.log('error', error));
 
       setTaskList([...tasklist, taskDetails]);
+      
     }
+    
   };
 
   const deletetask = (e, t) => {
