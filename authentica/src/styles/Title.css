@@ -1,0 +1,52 @@
+.flex-container {
+    display: flex;
+    width: 50%;
+}
+
+.flex-child {
+    flex: 1;
+    width:100px;
+    height:150px;
+    margin-left: 300px;
+    margin-top:200px;
+    padding: 120px;
+    text-align: center;
+    background: url("https://content.wepik.com/statics/8281222/preview-page0.jpg");
+    background-size: contain;
+    font-weight: bold;
+    font-size: 20px;
+    color:black;
+}  
+
+.bg-image{
+    flex: 1;
+    width:100px;
+    height:150px;
+    margin-left: 220px;
+    margin-top:200px;
+    padding: 120px;
+    text-align: center;
+    background: url("https://s3.amazonaws.com/thumbnails.venngage.com/template/7231f073-42cb-4372-bb2f-caa7dc75dbed.png");
+    background-size: contain;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
+.flex-child:hover{
+    transform: translateY(-0.5rem);
+    box-shadow: 0.5rem 0.75rem 1.5rem #bbbbbb;
+}
+
+.bg-image:hover{
+    transform: translateY(-0.5rem);
+    box-shadow: 0.5rem 0.75rem 1.5rem #bbbbbb;
+}
+
+.flex-child:first-child {
+    margin-right: 10px;
+} 
+
+.background{
+    background-color: #363b45;
+}

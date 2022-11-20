@@ -5,7 +5,6 @@ import contents from './content';
 import SearchBar from "./components/SearchBar";
 import "./App.css";
 
-
 export default function App() {
    
    function onSelectFile(event) {

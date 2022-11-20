@@ -5,13 +5,16 @@ import MainApp from './MainApp';
 import UserScreen from './UserScreen';
 import reportWebVitals from './reportWebVitals';
 import UpdateScreen from './UpdateScreen';
-import RegisterScreen from './RegisterScreen'
-import Todo from './components/ToDo';
+import RegisterScreen from './RegisterScreen';
+import ToDo from './ToDo';
+import Repos from './Repos';
+
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
+import Photo from './Photo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,7 +25,9 @@ root.render(
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/user" element={<UserScreen />} />
           <Route path="/update" element={<UpdateScreen />} />
-          <Route path="/todo" element={<Todo />} />
+          <Route path="/todo" element={<ToDo />} />
+          <Route path="/repos" element={<Repos />} />
+          <Route path="/photo" element={<Photo />} />
       </Routes>
     </Router>
 
