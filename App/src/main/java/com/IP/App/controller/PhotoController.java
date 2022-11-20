@@ -22,8 +22,6 @@ public class PhotoController {
             consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public Photo addPhoto(@RequestParam("photo") String photo, @RequestParam("image") MultipartFile image) throws IOException {
         Photo newImage = new ObjectMapper().readValue(photo, Photo.class);
-        //Photo newImage= new Photo();
-        //newImage=photo;
         newImage.setImageData(new Binary(BsonBinarySubType.BINARY,image.getBytes()));
 
         newImage = photoRepository.insert(newImage);
