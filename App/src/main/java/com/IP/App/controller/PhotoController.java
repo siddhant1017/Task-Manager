@@ -1,6 +1,7 @@
 package com.IP.App.controller;
 
 import com.IP.App.Models.Photo;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
@@ -28,6 +29,26 @@ public class PhotoController {
         return newImage;
     }
 
+    @PostMapping(value= "/photos/edit")
+    public ResponseEntity<Photo> editPhoto( @RequestParam("photo") String photo, @RequestParam("updatedImage") MultipartFile updatedImage) throws IOException {
+        Photo photoObj = new ObjectMapper().readValue(photo, Photo.class);
+        if(!updatedImage.isEmpty()){
+            photoObj.setImageData(new Binary(BsonBinarySubType.BINARY,updatedImage.getBytes()));
+        }
+        return photoRepository.findById(photoObj.getPhotoId())
+                .map(photoData -> {
+                    photoData.setDeleted(photoObj.getDeleted());
+                    photoData.setFavourite(photoObj.getFavourite());
+                    photoData.setPhotoTitle(photoObj.getPhotoTitle());
+                    photoData.setCatName(photoObj.getCatName());
+                    if(!updatedImage.isEmpty()) {
+                        photoData.setImageData(photoObj.getImageData());
+                    }
+                    Photo updatedPhoto = photoRepository.save(photoData);
+                    return ResponseEntity.ok().body(updatedPhoto);
+                }).orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping(value= "/photos/delete")
     public ResponseEntity<Photo> deletePhoto( @RequestBody Photo photo) {
         return photoRepository.findById(photo.getPhotoId())
@@ -38,3 +59,4 @@ public class PhotoController {
                 }).orElse(ResponseEntity.notFound().build());
     }
 }
+
