@@ -8,17 +8,21 @@ import './styles/Title.css';
 function Title(props){
     const navigate = useNavigate();
         return (
-            <><div>
-            <NavBar></NavBar><div class="flex-container">
-                <div class="flex-child">
-                    <p onClick={() => navigate("/todo")}>To_Do</p>
+            <div>
+            <NavBar></NavBar>
+            <div class="flex-container">
+                <div class="flex-child" onClick={() => navigate("/todo")}>
+                    <div class="todo-image">
+
+                    </div>
                 </div>
 
-                <div class="bg-image">
-                    <p onClick={() => navigate("/photo")}>Photo App</p>
+                <div class="bg-image" onClick={() => navigate("/photo")}>
+                    <div class="photo-image">
+                    </div>
                 </div>
 
-            </div></div></>
+            </div></div>
 
             
         );
