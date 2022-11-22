@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaUpload } from "react-icons/fa";
 import { Products } from './components/products';
 import contents from './content';
@@ -8,10 +8,12 @@ import NavBar from "./components/NavBar";
 import Tags from "./components/Tags";
 import { v4 as uuid } from 'uuid';
 import { useLocation } from 'react-router-dom';
+import { FaHeart, FaTrash, FaEdit} from 'react-icons/fa';
 
 export default function Photo() {
     const { state } = useLocation();
     const [imageList, setImageList] = useState([]);
+    const [userFlag, setUserFlag]= useState(false);
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     let photoObj={}
@@ -24,6 +26,55 @@ export default function Photo() {
         photoObj["favourite"]=false;
     let uploadedFile=null;
 
+
+    useEffect(() => {   if(!userFlag){
+        getAllImagesByLoginId();
+        setUserFlag(true);
+      }  });
+    const getAllImagesByLoginId=()=>{
+        var raw = JSON.stringify({
+            "loginId": state.res.res.uid 
+          });
+          var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,          
+            body: raw,          
+            redirect: 'follow'          
+          };
+          let allImages;
+          fetch("http://localhost:8080/photos/getallphotos", requestOptions) 
+            .then(response => response.text())
+            .then(result => {
+                console.log("images--> ",result);
+               
+                allImages= JSON.parse(result);
+                let imagesList=[];
+                for(let element of allImages){
+                    var binary = '';
+                    var base64;
+                    photoObj=element;
+                    //base64String = btoa(String.fromCharCode(...new Uint8Array(element.imageData.data)));
+                    var bytes = new Uint8Array( element.imageData.data );
+                    var len = bytes.byteLength;
+                    for (var i = 0; i < len; i++) 
+                        binary += String.fromCharCode( bytes[ i ] );
+                    base64 = window.btoa( binary );
+                     photoObj.imageData = "data:image/png;base64,"+ base64;
+
+                    // photoObj.photoId=element.photoId;
+                    // photoObj.loginId=element.loginId;
+                    // photoObj.photoTitle=element.photoTitle;
+                    // photoObj.catName= element.catName;
+                    // photoObj.deleted=element.deleted;
+                    // photoObj.favourite=element.favourite;
+                    
+                    imagesList.push(photoObj);
+                }
+                setImageList(imagesList)
+            })
+            .catch(error => console.log('error', error));
+    }
+    
     const onSelectFile=(e)=> {
          uploadedFile = e.target.files[0];
          console.log(uploadedFile, imageList);
@@ -69,10 +120,22 @@ export default function Photo() {
             </div>
         <div className='App'>
             {imageList.map(contents => (
-                <Products
-                    key={contents.photoId}
-                    image={contents.imageData}
-                    name={contents.photoTitle} />
+                // <Products
+                //     key={contents.photoId}
+                //     image={contents.imageData}
+                //     name={contents.photoTitle} />
+                <div className='productList'>
+                <div key={contents.photoId} className='productCard'>
+                    <img src={contents.imageData} alt='product-img' className='productImage'></img>
+                    <FaEdit input type="button" className={"productCard__edit"} />
+                    <FaHeart input type="button" className={"productCard__wishlist"} />
+                    <FaTrash input type="button" className={"productCard__trash"} />
+    
+                    <div className='productCard__content'>
+                        <h3 className='productName'>{contents.photoTitle}</h3>
+                    </div>
+                </div>
+            </div>
             ))}
         </div>
          <><section>
