@@ -7,15 +7,15 @@
   
   .search input {
     background-color: white;
-    border: 0;
-    border-radius: 2px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
+    border-radius: 25px;
     font-size: 18px;
     padding: 15px;
     height: 30px;
     width: 300px;
     justify-content: center;
+    padding-right: 25px;
+    background: url(https://static.thenounproject.com/png/101791-200.png) no-repeat right;
+    background-size: 10%;
 
   }
 

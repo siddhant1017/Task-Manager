@@ -34,13 +34,6 @@ function SearchBar({ placeholder, data }) {
           value={wordEntered}
           onChange={handleFilter}
         />
-        <div className="searchIcon">
-          {filteredData.length === 0 ? (
-            <AiOutlineSearch />
-          ) : (
-            <AiFillCloseCircle id="clearBtn" onClick={clearInput} />
-          )}
-          </div>
       </div>
       {filteredData.length != 0 && (
         <div className="dataResult">
