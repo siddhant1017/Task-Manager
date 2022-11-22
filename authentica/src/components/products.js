@@ -1,6 +1,7 @@
 import { FaHeart, FaTrash, FaEdit} from 'react-icons/fa';
 
 export function Products(props) {
+    console.log(props)
     return(
         <div className='productList'>
             <div key={props.id} className='productCard'>
