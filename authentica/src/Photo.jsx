@@ -12,38 +12,55 @@ import { useLocation } from 'react-router-dom';
 export default function Photo() {
     const { state } = useLocation();
     const [imageList, setImageList] = useState([]);
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
     let photoObj={}
         photoObj["photoId"]= null;
         photoObj["loginId"]=null;
         photoObj["photoTitle"]=null;
-        photoObj["image"]=null;
         photoObj["imageData"]=null;
         photoObj["catName"]=null;
         photoObj["deleted"]=false;
         photoObj["favourite"]=false;
-    
+    let uploadedFile=null;
+
     const onSelectFile=(e)=> {
-         const selectedFiles = e.target.files;
-         console.log(selectedFiles, imageList);
+         uploadedFile = e.target.files[0];
+         console.log(uploadedFile, imageList);
+         uploadImage();
+    }
+    
+    const uploadImage=()=>{
+
          //push to onupload function
         const id= uuid();
-         console.log(id, state);
+         console.log(id, uploadedFile);
          
          photoObj.photoId=id;
          photoObj.loginId=state.res.res.uid;
          photoObj.photoTitle="Burger";
          photoObj.catName= "food";
-         photoObj.image=selectedFiles[0];
-         photoObj.imageData=URL.createObjectURL(selectedFiles[0]);
          photoObj.deleted=false;
          photoObj.favourite=false;
          console.log(photoObj);
+         const formData= new FormData();
+         formData.append("image", uploadedFile );
+         formData.append("photo",JSON.stringify(photoObj));
+         console.log(formData, JSON.stringify(photoObj));
+         let requestOptions = {
+            method: 'POST',
+            body: formData,
+          };
+          fetch("http://localhost:8080/photos/add", requestOptions)
+          .then(response => response.text())
+          .then(result => {console.log(result); })
+          .catch(error => console.log('error', error));
+          photoObj.imageData=URL.createObjectURL(uploadedFile);
          setImageList([...imageList,photoObj]);
-
          console.log(imageList);
-
          
      }
+
      return(
         <><div className='Search'>
             <NavBar></NavBar>
