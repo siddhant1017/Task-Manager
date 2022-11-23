@@ -4,12 +4,6 @@ import "../styles/Popup.css"
 function Popup(props) {
     const [pass, setPass] = useState("");
 
-
-
-
-
-
-
     const checkAuth = () =>{
         if(pass==props.password){
             props.filteredResults.forEach((element)=>{
