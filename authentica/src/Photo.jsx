@@ -14,7 +14,10 @@ import { FaHeart, FaTrash, FaEdit} from 'react-icons/fa';
 export default function Photo() {
     const { state } = useLocation();
     const [imageList, setImageList] = useState([]);
+    const [filteredResults, setFilteredResults] = useState([]);
     const [userFlag, setUserFlag]= useState(false);
+    const [tagsList, setTagsList]= useState([]);
+
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     let photoObj={}
@@ -50,32 +53,65 @@ export default function Photo() {
                
                 allImages= JSON.parse(result);
                 let imagesList=[];
+                let tagList=[];
+                tagList.push("All");
                 for(let element of allImages){
+                    photoObj=element;
+
+                    //converting array buffer to base64 image
                     var binary = '';
                     var base64;
-                    photoObj=element;
-                    //base64String = btoa(String.fromCharCode(...new Uint8Array(element.imageData.data)));
                     var bytes = new Uint8Array( element.imageData.data );
                     var len = bytes.byteLength;
                     for (var i = 0; i < len; i++) 
                         binary += String.fromCharCode( bytes[ i ] );
                     base64 = window.btoa( binary );
-                     photoObj.imageData = "data:image/png;base64,"+ base64;
-
-                    // photoObj.photoId=element.photoId;
-                    // photoObj.loginId=element.loginId;
-                    // photoObj.photoTitle=element.photoTitle;
-                    // photoObj.catName= element.catName;
-                    // photoObj.deleted=element.deleted;
-                    // photoObj.favourite=element.favourite;
+                    photoObj.imageData = "data:image/png;base64,"+ base64;
                     
                     imagesList.push(photoObj);
+
+                    //for tags list
+                    if(!tagList.includes(element.catName)){
+                        tagList.push(element.catName);
+                    }
                 }
-                setImageList(imagesList)
+                setTagsList(tagList);
+                setImageList(imagesList);
+                setFilteredResults(imagesList);
             })
             .catch(error => console.log('error', error));
     }
     
+    const searchItems = (searchInput,type) => {
+        if (searchInput !== '' && type=="Input") {
+            const filteredData = imageList.filter((item) => {
+                
+                return (Object.values(item.photoTitle).join('').toLowerCase().includes(searchInput.toLowerCase())) ||
+                (Object.values(item.catName).join('').toLowerCase().includes(searchInput.toLowerCase()))
+            })
+            setFilteredResults(filteredData)
+        }else if(searchInput !== '' && type=="Tags") {
+            const filteredData = imageList.filter((item) => {
+                
+                return Object.values(item.catName).join('').toLowerCase().includes(searchInput.toLowerCase());
+            })
+            setFilteredResults(filteredData)
+        }
+        else{
+            setFilteredResults(imageList)
+        }
+        
+    }
+
+    const onFilterWithTags=(e)=>{
+        console.log(e);
+        if(e.target.id=="All"){
+            setFilteredResults(imageList)
+        }else{
+
+            searchItems(e.target.id.toString(),"Tags");
+        }
+    }
     const onSelectFile=(e)=> {
          uploadedFile = e.target.files[0];
          console.log(uploadedFile, imageList);
@@ -108,7 +144,11 @@ export default function Photo() {
           .then(result => {console.log(result); })
           .catch(error => console.log('error', error));
           photoObj.imageData=URL.createObjectURL(uploadedFile);
+          if(!tagsList.includes(photoObj.catName)){
+            setTagsList([...tagsList, photoObj.catName]);
+        }
          setImageList([...imageList,photoObj]);
+         setFilteredResults([...imageList,photoObj]);
          console.log(imageList);
          
      }
@@ -118,15 +158,21 @@ export default function Photo() {
      return(
         <><div className='Search'>
             <NavBar></NavBar>
-            <SearchBar placeholder="Enter Search..." />
-            <Tags></Tags>
+            <div className="searchInputs">
+            <input
+          type="text" placeholder="Enter Search..." onChange={(e) => searchItems(e.target.value.toString(),"Input")}
+        />
+        </div>
+        <div className="tags">
+            {tagsList.map(tag=>(
+                <button id={tag} className="button-1" onClick={(e) => onFilterWithTags(e)}> {tag} </button>
+
+            ))}
+            
+        </div>
             </div>
         <div className='App'>
-            {imageList.map(contents => (
-                // <Products
-                //     key={contents.photoId}
-                //     image={contents.imageData}
-                //     name={contents.photoTitle} />
+            {filteredResults.map(contents => (
                 <div className='productList'>
                 <div key={contents.photoId} className='productCard' onMouseOver = {() =>setIsHovering(true)} onMouseOut = {()=> setIsHovering(false)}>
                     <img src={contents.imageData} alt='product-img' className='productImage'></img>
