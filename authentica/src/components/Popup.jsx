@@ -12,7 +12,7 @@ function Popup(props) {
 
     const checkAuth = () =>{
         if(pass==props.password){
-            props.imageList.forEach((element)=>{
+            props.filteredResults.forEach((element)=>{
                 if(element.photoId==props.id){
 
                     var myHeaders = new Headers();
@@ -36,11 +36,12 @@ function Popup(props) {
                     fetch("http://localhost:8080/photos/delete", requestOptions)
                     .then(response => response.text())
                     .then(result => {
-                        console.log(result)
-                        const updateList = props.imageList.filter(
+                        const updateList = props.filteredResults.filter(
                             (l) => l.photoId !== props.id
                         );
-                        props.setImageList(updateList)
+                        props.setFilteredResults(updateList)
+                        console.log(updateList)
+
                         props.setIsOpen(false)
                     })
                     .catch(error => console.log('error', error));

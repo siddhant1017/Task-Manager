@@ -180,8 +180,8 @@ export default function Photo() {
         {isOpen && (
         <Popup
           password={state.res.res.password}
-          setImageList={setImageList}
-          imageList={imageList}
+          setFilteredResults={setFilteredResults}
+          filteredResults={filteredResults}
           id={id}
           setIsOpen={setIsOpen}
           handleClose={togglePopup}
