@@ -10,6 +10,7 @@ import { v4 as uuid } from 'uuid';
 import { useLocation } from 'react-router-dom';
 import { FaHeart, FaTrash, FaEdit} from 'react-icons/fa';
 
+
 export default function Photo() {
     const { state } = useLocation();
     const [imageList, setImageList] = useState([]);
@@ -111,6 +112,8 @@ export default function Photo() {
          console.log(imageList);
          
      }
+    
+    const [isHovering, setIsHovering] = useState(false);
 
      return(
         <><div className='Search'>
@@ -125,15 +128,19 @@ export default function Photo() {
                 //     image={contents.imageData}
                 //     name={contents.photoTitle} />
                 <div className='productList'>
-                <div key={contents.photoId} className='productCard'>
+                <div key={contents.photoId} className='productCard' onMouseOver = {() =>setIsHovering(true)} onMouseOut = {()=> setIsHovering(false)}>
                     <img src={contents.imageData} alt='product-img' className='productImage'></img>
+                    {isHovering && (
+                    
+                    <div className='productCard__content'>
+                    <h3 className='productName'>{contents.photoTitle}</h3>
                     <FaEdit input type="button" className={"productCard__edit"} />
                     <FaHeart input type="button" className={"productCard__wishlist"} />
                     <FaTrash input type="button" className={"productCard__trash"} />
     
-                    <div className='productCard__content'>
-                        <h3 className='productName'>{contents.photoTitle}</h3>
-                    </div>
+                    </div> 
+                    )};
+                    
                 </div>
             </div>
             ))}
