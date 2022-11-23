@@ -64,8 +64,20 @@ function Popup(props) {
     <div className="popup-box">
         <div className="box">
         <span className="close-icon" onClick={props.handleClose}>x</span>
-        
-        {/* <input name="Password" type="text" onChange={(e) => setPass(e.target.value)}></input> */}
+        <div> Image </div>
+        <section>
+          <label>
+            Upload
+            <input
+              type="file"
+              name="images"
+              className="input1"
+              onChange={(e) => onSelectFile(e)}
+              accept="image/png, image/jpeg, image/webp"
+            />
+          </label>
+        </section>
+        <input name="Tag" type="text" onChange={(e) => setPass(e.target.value)}></input>
         <button >Save</button>
         {/* {props.content} */}
         </div>
@@ -74,7 +86,19 @@ function Popup(props) {
         <div className="box">
         <span className="close-icon" onClick={props.handleClose}>x</span>
         
-        <input name="Password" type="text" onChange={(e) => setPass(e.target.value)}></input>
+        <section>
+          <label>
+            Upload
+            <input
+              type="file"
+              name="images"
+              className="input1"
+              onChange={(e) => onSelectFile(e)}
+              accept="image/png, image/jpeg, image/webp"
+            />
+          </label>
+        </section>
+        <input name="Tag" type="text" onChange={(e) => setPass(e.target.value)}></input>
         <button >Upload</button>
         {/* {props.content} */}
       </div>
