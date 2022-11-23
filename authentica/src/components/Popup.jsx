@@ -50,6 +50,7 @@ function Popup(props) {
     }
 
   return (
+    <>
     <div className="popup-box">
         <div className="box">
         <span className="close-icon" onClick={props.handleClose}>x</span>
@@ -59,6 +60,28 @@ function Popup(props) {
         {/* {props.content} */}
       </div>
     </div>
+
+    <div className="popup-box">
+        <div className="box">
+        <span className="close-icon" onClick={props.handleClose}>x</span>
+        
+        {/* <input name="Password" type="text" onChange={(e) => setPass(e.target.value)}></input> */}
+        <button >Save</button>
+        {/* {props.content} */}
+        </div>
+    </div>
+    <div className="popup-box">
+        <div className="box">
+        <span className="close-icon" onClick={props.handleClose}>x</span>
+        
+        <input name="Password" type="text" onChange={(e) => setPass(e.target.value)}></input>
+        <button >Upload</button>
+        {/* {props.content} */}
+      </div>
+    </div>
+    </>
+
+    
   )
 }
 

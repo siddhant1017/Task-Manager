@@ -169,6 +169,18 @@ export default function Photo() {
     togglePopup();
   };
 
+    const handleEdit = (id) => {
+        setID(id.currentTarget.id)
+        togglePopup()
+    };
+
+    const changeWhishlist = (id) => {
+        setID(id.currentTarget.id)
+        togglePopup()
+    };
+
+
+
   const [isHovering, setIsHovering] = useState(false);
 
   return (
@@ -183,6 +195,7 @@ export default function Photo() {
           />
         </div>
 
+        {/* pop up for delete the images  */}
         {isOpen && (
           <Popup
             password={state.res.res.password}
@@ -193,6 +206,29 @@ export default function Photo() {
             handleClose={togglePopup}
           />
         )}
+        {/* pop up for Edit the images  */}
+       {isOpen && (
+        <Popup 
+          password={state.res.res.password}
+          setFilteredResults={setFilteredResults}
+          filteredResults={filteredResults}
+          id={id}
+          setIsOpen={setIsOpen}
+          handleClose={togglePopup}
+        />
+       )}
+
+        {/* pop up for changeFav the images  */}
+       {isOpen && (
+        <Popup
+          password={state.res.res.password}
+          setFilteredResults={setFilteredResults}
+          filteredResults={filteredResults}
+          id={id}
+          setIsOpen={setIsOpen}
+          handleClose={togglePopup}
+        />
+       )}
 
         <div className="tags">
           {tagsList.map((tag) => (
@@ -224,11 +260,11 @@ export default function Photo() {
               {isHovering && (
                 <div className="productCard__content">
                   <h3 className="productName">{contents.photoTitle}</h3>
-                  <FaEdit input type="button" className={"productCard__edit"} />
+                  <FaEdit input type="button" id={contents.photoId} onClick={handleEdit}className={"productCard__edit"} />
                   <FaHeart
                     input
                     type="button"
-                    className={"productCard__wishlist"}
+                    id={contents.photoId} onClick={changeFav}className={"productCard__wishlist"}
                   />
                   <FaTrash
                     input
@@ -243,8 +279,10 @@ export default function Photo() {
           </div>
         ))}
       </div>
+        {/* <button onClick={}>Upload</button> */}
       <>
-        <section>
+        
+         <section>
           <label>
             Upload
             <input
