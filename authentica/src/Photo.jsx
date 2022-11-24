@@ -189,7 +189,8 @@ export default function Photo() {
     setFilteredResults(filteredResults)
   };
 
-  const [isHovering, setIsHovering] = useState(false);
+
+
 
   return (
     <>
@@ -262,16 +263,16 @@ export default function Photo() {
               <div className="productList">
                 <div
                   key={contents.photoId}
-                  className="productCard"
-                  onMouseOver={() => setIsHovering(true)}
-                  onMouseOut={() => setIsHovering(false)}
-                >
-                  <img
+                  className="productCard">
+                  
+                <div class="image">
+                    <img
                     src={contents.imageData}
                     alt="product-img"
                     className="productImage"
-                  ></img>
-                  {isHovering && (
+                    ></img>
+                </div>
+                 
                     <div className="productCard__content">
                       <h3 className="productName">{contents.photoTitle}</h3>
                       <FaEdit
@@ -299,7 +300,6 @@ export default function Photo() {
                         className={"productCard__trash"}
                       />
                     </div>
-                  )}
                 </div>
               </div>
             )
