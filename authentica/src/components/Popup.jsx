@@ -112,7 +112,7 @@ function Popup(props) {
           </div>
         </div>
       );
-    else if (props.func == 2)
+    else// if (props.func == 2)
       return (
         <div className="popup-box">
           <div className="box">
@@ -138,23 +138,23 @@ function Popup(props) {
           </div>
         </div>
       );
-    else
-      return (
-        <div className="popup-box">
-          <div className="box">
-            <span className="close-icon" onClick={props.handleClose}>
-              x
-            </span>
-            <h1 className="popup-box-header">Enter your password</h1>
-            <input
-              name="Password"
-              type="text"
-              onChange={(e) => setPass(e.target.value)}
-            ></input>
-            <button onClick={confirmAuth}>Delete</button>
-          </div>
-        </div>
-      );
+    // else
+    //   return (
+    //     <div className="popup-box">
+    //       <div className="box">
+    //         <span className="close-icon" onClick={props.handleClose}>
+    //           x
+    //         </span>
+    //         <h1 className="popup-box-header">Enter your password</h1>
+    //         <input
+    //           name="Password"
+    //           type="text"
+    //           onChange={(e) => setPass(e.target.value)}
+    //         ></input>
+    //         <button onClick={confirmAuth}>Delete</button>
+    //       </div>
+    //     </div>
+    //   );
   }
 }
 

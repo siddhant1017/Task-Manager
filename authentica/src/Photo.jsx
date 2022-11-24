@@ -20,6 +20,7 @@ export default function Photo() {
   const [isOpen, setIsOpen] = useState(false);
   const [id, setID] = useState();
   const [func, SetFunc] = useState();
+  const [color, setColor] = useState(false);
 
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -177,6 +178,17 @@ export default function Photo() {
     togglePopup();
   };
 
+  const handleFav = (id) => {
+
+    const index = filteredResults.findIndex((element => element.photoId === id.currentTarget.id));
+    if(filteredResults[index].Favourite)
+      filteredResults[index].Favourite = false
+    else
+      filteredResults[index].Favourite = true
+    
+    setFilteredResults(filteredResults)
+  };
+
   const [isHovering, setIsHovering] = useState(false);
 
   return (
@@ -204,28 +216,28 @@ export default function Photo() {
           />
         )}
         {/* pop up for Edit the images  */}
-       {isOpen && (
-        <Popup 
-          password={state.res.res.password}
-          setFilteredResults={setFilteredResults}
-          filteredResults={filteredResults}
-          id={id}
-          setIsOpen={setIsOpen}
-          handleClose={togglePopup}
-        />
-       )}
+        {isOpen && (
+          <Popup
+            password={state.res.res.password}
+            setFilteredResults={setFilteredResults}
+            filteredResults={filteredResults}
+            id={id}
+            setIsOpen={setIsOpen}
+            handleClose={togglePopup}
+          />
+        )}
 
         {/* pop up for changeFav the images  */}
-       {isOpen && (
-        <Popup
-          password={state.res.res.password}
-          setFilteredResults={setFilteredResults}
-          filteredResults={filteredResults}
-          id={id}
-          setIsOpen={setIsOpen}
-          handleClose={togglePopup}
-        />
-       )}
+        {isOpen && (
+          <Popup
+            password={state.res.res.password}
+            setFilteredResults={setFilteredResults}
+            filteredResults={filteredResults}
+            id={id}
+            setIsOpen={setIsOpen}
+            handleClose={togglePopup}
+          />
+        )}
 
         <div className="tags">
           {tagsList.map((tag) => (
@@ -272,6 +284,11 @@ export default function Photo() {
                       <FaHeart
                         input
                         type="button"
+                        id={contents.photoId}
+                        style={{
+                          color: contents.Favourite ? "red" : "black",
+                        }}
+                        onClick={handleFav}
                         className={"productCard__wishlist"}
                       />
                       <FaTrash
@@ -288,10 +305,9 @@ export default function Photo() {
             )
           )}
       </div>
-        {/* <button onClick={}>Upload</button> */}
+      {/* <button onClick={}>Upload</button> */}
       <>
-        
-         <section>
+        <section>
           <label>
             Upload
             <input
