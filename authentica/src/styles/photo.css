@@ -128,11 +128,12 @@
   
  
   .productName{
-    font-size: 15px;
+    font-size: 17px;
     display: inline-block;
-    position:absolute;
-    left:3rem;
-    bottom:1rem;
+    position: absolute;
+    left: 3rem;
+    color: white;
+     /* bottom: 1rem; */
   }
   
   .displayStack__1,
