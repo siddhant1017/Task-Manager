@@ -81,16 +81,6 @@ function Popup(props) {
           .then((result) => {
             console.log(result);
             props.setIsOpen(false);
-
-            console.log(file.value)
-            // var binary = "";
-            // var base64;
-            // var bytes = new Uint8Array(file);
-            // var len = bytes.byteLength;
-            // for (var i = 0; i < len; i++)
-            //   binary += String.fromCharCode(bytes[i]);
-            // base64 = window.btoa(binary);
-            // photoObj.imageData = "data:image/png;base64," + base64;
             photoObj.imageData = URL.createObjectURL(file)
             const removedList = props.filteredResults.filter(
               (e) => e.photoId !== props.id
@@ -102,25 +92,6 @@ function Popup(props) {
       }
     });
 
-    // formdata.append("photo", JSON.stringify(photoObj));
-
-    // var requestOptions = {
-    //   method: "POST",
-    //   body: formdata,
-    //   redirect: "follow",
-    // };
-
-    // console.log(JSON.stringify(photoObj));
-    // console.log(formdata);
-
-    // fetch("http://localhost:8080/photos/edit", requestOptions)
-    //   .then((response) => response.text())
-    //   .then((result) =>{
-    //     console.log(result)
-    //     props.setIsOpen(false);
-
-    // })
-    //   .catch((error) => console.log("error", error));
   };
 
   {
@@ -149,7 +120,6 @@ function Popup(props) {
               x
             </span>
             <h1 className="popup-box-header">Edit your file</h1>
-            {/* <img src={""} alt=""></img> */}
             <input
               name="tag"
               type="text"
@@ -186,16 +156,6 @@ function Popup(props) {
         </div>
       );
   }
-  //   return (
-  //     <div className="popup-box">
-  //         <div className="box">
-  //         <span className="close-icon" onClick={props.handleClose}>x</span>
-  //         <h1 className="popup-box-header">Enter your password</h1>
-  //         <input name="Password" type="text" onChange={(e) => setPass(e.target.value)}></input>
-  //         <button onClick={checkAuth}>Delete</button>
-  //       </div>
-  //     </div>
-  //   )
 }
 
 export default Popup;

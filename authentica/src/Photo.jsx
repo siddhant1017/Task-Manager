@@ -191,6 +191,7 @@ export default function Photo() {
           />
         </div>
 
+        {/* pop up for delete the images  */}
         {isOpen && (
           <Popup
             func={func}
@@ -202,6 +203,29 @@ export default function Photo() {
             handleClose={togglePopup}
           />
         )}
+        {/* pop up for Edit the images  */}
+       {isOpen && (
+        <Popup 
+          password={state.res.res.password}
+          setFilteredResults={setFilteredResults}
+          filteredResults={filteredResults}
+          id={id}
+          setIsOpen={setIsOpen}
+          handleClose={togglePopup}
+        />
+       )}
+
+        {/* pop up for changeFav the images  */}
+       {isOpen && (
+        <Popup
+          password={state.res.res.password}
+          setFilteredResults={setFilteredResults}
+          filteredResults={filteredResults}
+          id={id}
+          setIsOpen={setIsOpen}
+          handleClose={togglePopup}
+        />
+       )}
 
         <div className="tags">
           {tagsList.map((tag) => (
@@ -264,8 +288,10 @@ export default function Photo() {
             )
           )}
       </div>
+        {/* <button onClick={}>Upload</button> */}
       <>
-        <section>
+        
+         <section>
           <label>
             Upload
             <input
