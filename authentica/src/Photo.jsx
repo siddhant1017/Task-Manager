@@ -19,6 +19,7 @@ export default function Photo() {
   const [tagsList, setTagsList] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [id, setID] = useState();
+  const [func, SetFunc] = useState();
 
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -166,6 +167,13 @@ export default function Photo() {
 
   const handleDelete = (id) => {
     setID(id.currentTarget.id);
+    SetFunc(1);
+    togglePopup();
+  };
+
+  const handleEdit = (id) => {
+    setID(id.currentTarget.id);
+    SetFunc(2);
     togglePopup();
   };
 
@@ -185,6 +193,7 @@ export default function Photo() {
 
         {isOpen && (
           <Popup
+            func={func}
             password={state.res.res.password}
             setFilteredResults={setFilteredResults}
             filteredResults={filteredResults}
@@ -208,40 +217,52 @@ export default function Photo() {
         </div>
       </div>
       <div className="App">
-        {filteredResults.filter(e => e['deleted'] == false).map((contents) => ( //render only images which are not deleted
-          <div className="productList">
-            <div
-              key={contents.photoId}
-              className="productCard"
-              onMouseOver={() => setIsHovering(true)}
-              onMouseOut={() => setIsHovering(false)}
-            >
-              <img
-                src={contents.imageData}
-                alt="product-img"
-                className="productImage"
-              ></img>
-              {isHovering && (
-                <div className="productCard__content">
-                  <h3 className="productName">{contents.photoTitle}</h3>
-                  <FaEdit input type="button" className={"productCard__edit"} />
-                  <FaHeart
-                    input
-                    type="button"
-                    className={"productCard__wishlist"}
-                  />
-                  <FaTrash
-                    input
-                    type="button"
-                    id={contents.photoId}
-                    onClick={handleDelete}
-                    className={"productCard__trash"}
-                  />
+        {filteredResults
+          .filter((e) => e["deleted"] == false)
+          .map(
+            (
+              contents //render only images which are not deleted
+            ) => (
+              <div className="productList">
+                <div
+                  key={contents.photoId}
+                  className="productCard"
+                  onMouseOver={() => setIsHovering(true)}
+                  onMouseOut={() => setIsHovering(false)}
+                >
+                  <img
+                    src={contents.imageData}
+                    alt="product-img"
+                    className="productImage"
+                  ></img>
+                  {isHovering && (
+                    <div className="productCard__content">
+                      <h3 className="productName">{contents.photoTitle}</h3>
+                      <FaEdit
+                        input
+                        type="button"
+                        id={contents.photoId}
+                        onClick={handleEdit}
+                        className={"productCard__edit"}
+                      />
+                      <FaHeart
+                        input
+                        type="button"
+                        className={"productCard__wishlist"}
+                      />
+                      <FaTrash
+                        input
+                        type="button"
+                        id={contents.photoId}
+                        onClick={handleDelete}
+                        className={"productCard__trash"}
+                      />
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          </div>
-        ))}
+              </div>
+            )
+          )}
       </div>
       <>
         <section>
