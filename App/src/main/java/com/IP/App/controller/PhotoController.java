@@ -86,5 +86,16 @@ public class PhotoController {
 
         return responseObject.toString();
     }
+
+    @PostMapping(value= "/photos/fav")
+    public ResponseEntity<Photo> setFavourite( @RequestBody Photo photo) {
+        return photoRepository.findById(photo.getPhotoId())
+                .map(photoData -> {
+                    photoData.setFavourite(photo.getFavourite());
+                    Photo updatedPhoto = photoRepository.save(photoData);
+                    return ResponseEntity.ok().body(updatedPhoto);
+                }).orElse(ResponseEntity.notFound().build());
+    }
+
 }
 
